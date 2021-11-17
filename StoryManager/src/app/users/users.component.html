@@ -1,1 +1,10 @@
-<p>users works!</p>
+<h2>Users</h2>
+<ul class="list-group">
+  <li class="list-group-item" [class.active]="selectedUser == user" *ngFor="let user of users" (click)="onSelect(user)">
+    <span class="badge">{{user._id}}</span> {{user.username}}
+  </li>
+</ul>
+
+<div *ngIf="selectedUser">
+  <app-userdetails [user]="selectedUser"></app-userdetails>
+</div>
