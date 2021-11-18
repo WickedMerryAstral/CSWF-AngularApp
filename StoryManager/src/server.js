@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, "..", "dist", appname), options));
 
 // Catch all routes and return the index file
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "dist", appname, "src/index.html"));
+  res.sendFile(path.join(__dirname, "..", "dist", appname, "index.html"));
 });
 
 // Get port from environment and store in Express.
