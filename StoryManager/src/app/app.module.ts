@@ -7,7 +7,7 @@ import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateuserComponent } from './createuser/createuser.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 
 // Material
