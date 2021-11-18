@@ -1,9 +1,8 @@
-<h2>{{user.username}}</h2>
-<div>
-  <div class="container"></div>
+<mat-card>
+  <mat-card-title>{{user.username}}</mat-card-title>
   <form>
     <div class="form-group">
-      <label for="username" name="username" >Username:</label>
+      <label for="username" name="username">Username:</label>
       <input name="username" id="username" [(ngModel)]="user.username" placeholder="username" />
     </div>
 
@@ -13,12 +12,12 @@
     </div>
 
     <div class="form-group">
-      <label for="role" >Role:</label>
+      <label for="role">Role:</label>
       <select id="role" [(ngModel)]="user.role" name="role">
         <option *ngFor="let key of keys" [value]="key" [label]="roles[key]">
         </option>
       </select>
     </div>
   </form>
-  <button mat-button class="danger" (click)="RemoveUser()">Delete User</button>
-</div>
+  <button mat-button color="warn" (click)="RemoveUser()">Delete User</button>
+</mat-card>

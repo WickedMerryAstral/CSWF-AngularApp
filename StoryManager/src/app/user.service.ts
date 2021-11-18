@@ -27,7 +27,7 @@ export class UserService {
   }
 
   deleteUser(u: User): void {
-    // Splicing array. Changes later when working on back-end.
+    // Splicing array. Changes later when working with back-end.
     this.users.forEach((value, index) => {
       if (value._id == u._id) this.users.splice(index, 1);
     });
