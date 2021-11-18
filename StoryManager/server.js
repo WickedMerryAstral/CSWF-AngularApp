@@ -23,7 +23,7 @@ const options = {
   setHeaders: (res, path, stat) => {
     res.set(
       "Content-Security-Policy",
-      "default-src 'self' https://cswf-story-manager.herokuapp.com; style-src 'self' https://cswf-story-manager.herokuapp.com; script-src 'self' https://cswf-story-manager.herokuapp.com"
+      "default-src 'self' https://cswf-story-manager.herokuapp.com/; script-src 'self' https://cswf-story-manager.herokuapp.com/; connect-src https://cswf-story-manager.herokuapp.com/ 'self'; img-src 'self' www.google.com; style-src 'self' 'unsafe-inline';"
     );
   },
 };
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, "..", "dist", appname), options));
 
 // Catch all routes and return the index file
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "dist", appname, "index.html"));
+  res.sendFile(path.join(__dirname, "..", "dist", appname, "src/index.html"));
 });
 
 // Get port from environment and store in Express.
