@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\StoryManager",
+    "\\StoryManager\\src",
+    "\\StoryManager\\src\\app",
+    "\\StoryManager\\src\\app\\navigation",
+    "\\StoryManager\\src\\app\\userdetails",
+    "\\StoryManager\\src\\app\\users",
+    "\\StoryManager\\src\\model"
+  ],
+  "SelectedNode": "\\StoryManager\\src\\app\\user.service.ts",
+  "PreviewInSolutionExplorer": false
+}
