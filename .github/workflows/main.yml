@@ -27,4 +27,5 @@ jobs:
       run: |
           cd StoryManager
           ls
+          npm install
           npm test
