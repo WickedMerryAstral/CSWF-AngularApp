@@ -24,8 +24,6 @@ jobs:
 
       
     - name: Build and Test
-      run: |
-          cd StoryManager
-          ls
-          npm install
-          npm run test
+    - run: cd StoryManager
+    - run: npm ci
+    - run: npm run test:prod
