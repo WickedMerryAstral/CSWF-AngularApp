@@ -50,8 +50,7 @@ import { NavigationComponent } from './navigation/navigation.component'
     MatOptionModule,
     MatSelectModule,
     NoopAnimationsModule,
-    RouterModule,
-    Router
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
