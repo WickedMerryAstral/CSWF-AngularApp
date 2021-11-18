@@ -27,7 +27,3 @@ jobs:
       run: |
           cd StoryManager
           ls
-    - name: Run NPM
-      run: |
-          npm build
-          npm test
