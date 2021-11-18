@@ -1,10 +1,16 @@
-<h2>Users</h2>
-<ul class="list-group">
-  <li class="list-group-item" [class.active]="selectedUser == user" *ngFor="let user of users" (click)="onSelect(user)">
-    <span class="badge">{{user._id}}</span> {{user.username}}
-  </li>
-</ul>
-
-<div *ngIf="selectedUser">
-  <app-userdetails [user]="selectedUser"></app-userdetails>
+<div class="container">
+  <h2>Users</h2>
+  <ul class="list-group">
+    <li class="list-group-item" [class.active]="selectedUser == user" *ngFor="let user of users" (click)="onSelect(user)">
+      {{user.username}}
+    </li>
+  </ul>
+</div>
+<div class="container">
+  <button mat-button (click)="addUser()">Add user</button>
+</div>
+<div class="container">
+  <div *ngIf="selectedUser">
+    <app-userdetails [user]="selectedUser"></app-userdetails>
+  </div>
 </div>

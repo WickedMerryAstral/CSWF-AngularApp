@@ -30,4 +30,8 @@ export class UsersComponent implements OnInit {
   onSelect(user: User): void {
     this.selectedUser = user;
   }
+
+  addUser(): void {
+    this.router.navigate(['users/new']);
+  }
 }

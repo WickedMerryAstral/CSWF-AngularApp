@@ -17,12 +17,22 @@ export class UserService {
     this.users = UserSet;
   }
 
-  addUser(u: User) {
+  addUser(u: User) : void {
     this.users.push(u);
   }
 
   getUsers(): Observable<User[]> {
     const users = of(this.users);
     return users;
+  }
+
+  deleteUser(u: User): void {
+    // Splicing array. Changes later when working on back-end.
+    this.users.forEach((value, index) => {
+      if (value._id == u._id) this.users.splice(index, 1);
+    });
+  }
+
+  updateUser(u: User): void {
   }
 }

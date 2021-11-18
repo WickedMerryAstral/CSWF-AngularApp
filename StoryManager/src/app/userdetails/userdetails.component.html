@@ -1,5 +1,6 @@
 <h2>{{user.username}}</h2>
 <div>
+  <div class="container"></div>
   <form>
     <div class="form-group">
       <label for="username" name="username" >Username:</label>
@@ -15,9 +16,9 @@
       <label for="role" >Role:</label>
       <select id="role" [(ngModel)]="user.role" name="role">
         <option *ngFor="let key of keys" [value]="key" [label]="roles[key]">
-
         </option>
       </select>
     </div>
   </form>
+  <button mat-button class="danger" (click)="RemoveUser()">Delete User</button>
 </div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>New User</h1>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Username</label>
+      <input type="text" class="form-control" formControlName="username" required>
+    </div>
+    <div>
+      <label>Password</label>
+      <input type="text" class="form-control" formControlName="password" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
