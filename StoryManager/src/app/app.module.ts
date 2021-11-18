@@ -7,6 +7,8 @@ import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateuserComponent } from './createuser/createuser.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
+
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
@@ -47,7 +49,9 @@ import { NavigationComponent } from './navigation/navigation.component'
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    RouterModule,
+    Router
   ],
   providers: [],
   bootstrap: [AppComponent]

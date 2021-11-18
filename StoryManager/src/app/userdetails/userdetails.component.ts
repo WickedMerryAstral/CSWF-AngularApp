@@ -35,7 +35,7 @@ export class UserdetailsComponent implements OnInit {
   }
 
   RemoveUser(): void {
-    if (confirm("Are you sure you want to delete user " + this.user.username)) {
+    if (confirm("Are you sure you want to delete this user?" + this.user.username)) {
       this.userService.deleteUser(this.user);
       this.router.navigate(['users']);
     }
