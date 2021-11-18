@@ -23,9 +23,9 @@ jobs:
     - uses: actions/checkout@v2
 
       
-    - name: Change Directory
+    - name: Build and Test
       run: |
           cd StoryManager
           ls
           npm install
-          npm test
+          npm run test
