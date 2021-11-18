@@ -26,5 +26,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: |
             cd StoryManager
-            npm run ci
+            npm install --no-optional
             npm run test:prod
