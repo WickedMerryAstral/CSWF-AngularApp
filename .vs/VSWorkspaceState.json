@@ -9,6 +9,6 @@
     "\\StoryManager\\src\\app\\users",
     "\\StoryManager\\src\\model"
   ],
-  "SelectedNode": "\\StoryManager\\src\\app\\user.service.ts",
+  "SelectedNode": "\\StoryManager\\src\\app\\userdetails\\userdetails.component.html",
   "PreviewInSolutionExplorer": false
 }
