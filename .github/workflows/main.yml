@@ -27,3 +27,4 @@ jobs:
       run: |
           cd StoryManager
           ls
+          npm test
