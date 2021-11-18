@@ -27,4 +27,4 @@ jobs:
       - run: |
             cd StoryManager
             npm install --no-optional
-            npm run test
+            npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
