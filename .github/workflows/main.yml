@@ -27,4 +27,4 @@ jobs:
       - run: |
             cd StoryManager
             npm install --no-optional
-            npm run test:prod
+            npm run test
