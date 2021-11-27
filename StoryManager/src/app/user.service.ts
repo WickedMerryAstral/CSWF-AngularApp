@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // Temporary mock data.
 import { UserSet } from './mock-users';
+import { ConnectionString } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class UserService {
 
 
   login(user: User): Observable<any> {
-    return this.http.post('http://localhost:5000/api/users/login', user, this.httpOptions)
+    return this.http.post(ConnectionString + '/api/users/login', user, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -39,7 +40,7 @@ export class UserService {
   }
 
   register(user: User): Observable<any> {
-    return this.http.post('http://localhost:5000/api/users/', user, this.httpOptions)
+    return this.http.post(ConnectionString + '/api/users/', user, this.httpOptions)
       .pipe(
         tap(
           error => {

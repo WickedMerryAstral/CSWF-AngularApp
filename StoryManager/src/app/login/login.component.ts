@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     private webtoken: WebtokenService) { }
 
   ngOnInit(): void {
+
   };
 
   onSubmit() {
@@ -41,11 +42,16 @@ export class LoginComponent implements OnInit {
 
     this.userService.login(this.user).subscribe(
       (result) => {
+        // Setting the JWT token and the user.
         var temp = JSON.stringify(result.token);
         this.webtoken.setJwtToken(temp);
+        var tempUser: User;
+        tempUser = new User();
+        tempUser.username = JSON.stringify(result.username);
+        tempUser._id = JSON.stringify(result.userid);
+        this.webtoken.setUser(tempUser);
 
         this.router.navigate(['stories']);
-
       }, err => {
         var temp = JSON.stringify(err.error.Message);
         this.requestResult = temp;
