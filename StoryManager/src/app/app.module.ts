@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateuserComponent } from './createuser/createuser.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 // Material
@@ -22,7 +23,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatOptionModule } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NavigationComponent } from './navigation/navigation.component'
+import { NavigationComponent } from './navigation/navigation.component';
+import { StoriesComponent } from './stories/stories.component';
+import { StorydetailsComponent } from './storydetails/storydetails.component';
+import { LoginComponent } from './login/login.component'
 
 @NgModule({
   declarations: [
@@ -30,14 +34,17 @@ import { NavigationComponent } from './navigation/navigation.component'
     UsersComponent,
     UserdetailsComponent,
     CreateuserComponent,
-    NavigationComponent
+    NavigationComponent,
+    StoriesComponent,
+    StorydetailsComponent,
+    LoginComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatExpansionModule,

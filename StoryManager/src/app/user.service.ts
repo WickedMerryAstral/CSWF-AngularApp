@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
 import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 // Temporary mock data.
 import { UserSet } from './mock-users';
@@ -12,9 +15,38 @@ export class UserService {
 
   users: User[];
 
-  constructor() {
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+
+  constructor(private http: HttpClient) {
     // Filling array with temporary mock data.
     this.users = UserSet;
+  }
+
+
+  login(user: User): Observable<any> {
+    return this.http.post('http://localhost:5000/api/users/login', user, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            return error;
+          }
+        )
+      );
+  }
+
+  register(user: User): Observable<any> {
+    return this.http.post('http://localhost:5000/api/users/', user, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            return error;
+          }
+        )
+      );
   }
 
   addUser(u: User) : void {
