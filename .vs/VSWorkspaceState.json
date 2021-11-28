@@ -3,8 +3,13 @@
     "",
     "\\StoryManager",
     "\\StoryManager\\src",
-    "\\StoryManager\\src\\app"
+    "\\StoryManager\\src\\app",
+    "\\StoryManager\\src\\app\\createstory",
+    "\\StoryManager\\src\\app\\createuser",
+    "\\StoryManager\\src\\app\\login",
+    "\\StoryManager\\src\\app\\stories",
+    "\\StoryManager\\src\\app\\users"
   ],
-  "SelectedNode": "\\StoryManager\\src\\app\\app.module.ts",
+  "SelectedNode": "\\StoryManager\\src\\app\\story.service.ts",
   "PreviewInSolutionExplorer": false
 }

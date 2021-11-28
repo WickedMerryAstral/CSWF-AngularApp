@@ -22,13 +22,18 @@ export class StoryService {
     private token: WebtokenService) { }
 
   // Adding a story to the currently active user.
-  postStory(story: Story) : Observable<any>{
-    console.log(story);
+  postStory(story: Story): Observable<any>{
+    var ID = story.author._id.replace(/['"]+/g, '');
 
-    return this.http.post(ConnectionString + "/api/stories/users/" + story.author._id, story, this.httpOptions)
+    return this.http.post(ConnectionString + "/api/stories/", {
+      "userID": ID,
+      "title": story.title,
+      "description": story.description
+    }, this.httpOptions)
       .pipe(
         tap(
           error => {
+            console.log(error);
             return error;
           }
         )

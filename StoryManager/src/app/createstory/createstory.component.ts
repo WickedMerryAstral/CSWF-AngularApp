@@ -44,9 +44,13 @@ export class CreatestoryComponent implements OnInit {
   onSubmit(): void {
     this.story = this.storyForm.value;
     this.story.author = this.user;
-    this.storyService.postStory(this.story);
-
-    this.router.navigate(['stories']);
+    this.storyService.postStory(this.story)
+      .subscribe(result => {
+        console.log(result);
+        this.router.navigate(['stories']);
+      },
+        err => {
+          console.log(err);
+      });
   }
-
 }
