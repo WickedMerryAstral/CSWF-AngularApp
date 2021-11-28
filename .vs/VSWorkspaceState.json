@@ -5,12 +5,10 @@
     "\\StoryManager\\src",
     "\\StoryManager\\src\\app",
     "\\StoryManager\\src\\app\\createstory",
-    "\\StoryManager\\src\\app\\createuser",
-    "\\StoryManager\\src\\app\\login",
-    "\\StoryManager\\src\\app\\navigation",
     "\\StoryManager\\src\\app\\stories",
-    "\\StoryManager\\src\\app\\storydetails"
+    "\\StoryManager\\src\\app\\storydetails",
+    "\\StoryManager\\src\\model"
   ],
-  "SelectedNode": "\\StoryManager\\src\\app\\story.service.ts",
+  "SelectedNode": "\\StoryManager\\src\\app\\story.service.spec.ts",
   "PreviewInSolutionExplorer": false
 }
