@@ -27,7 +27,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { StoriesComponent } from './stories/stories.component';
 import { StorydetailsComponent } from './storydetails/storydetails.component';
 import { LoginComponent } from './login/login.component';
-import { CreatestoryComponent } from './createstory/createstory.component'
+import { CreatestoryComponent } from './createstory/createstory.component';
+import { LocationsComponent } from './locations/locations.component';
+import { LocationdetailsComponent } from './locationdetails/locationdetails.component';
+import { CreatelocationComponent } from './createlocation/createlocation.component'
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { CreatestoryComponent } from './createstory/createstory.component'
     StoriesComponent,
     StorydetailsComponent,
     LoginComponent,
-    CreatestoryComponent
+    CreatestoryComponent,
+    LocationsComponent,
+    LocationdetailsComponent,
+    CreatelocationComponent
   ],
   imports: [
     HttpClientModule,

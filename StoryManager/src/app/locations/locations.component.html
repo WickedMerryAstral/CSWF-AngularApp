@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title>Locations</mat-card-title>
+  <ul class="list-group">
+    <li class="list-group-item" [class.active]="selectedLocation == location" *ngFor="let location of locations" (click)="onSelect(location)">
+      {{location.title}}
+    </li>
+  </ul>
+  <button mat-button color="primary" (click)="addLocation()">Add Location</button>
+</mat-card>
+<div *ngIf="selectedLocation">
+  <app-locationdetails [location]="selectedLocation"></app-locationdetails>
+</div>

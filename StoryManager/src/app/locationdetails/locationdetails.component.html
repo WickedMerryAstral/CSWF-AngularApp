@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-title>{{location.title}}</mat-card-title>
+  <form>
+    <div class="form-group">
+      <label for="title" name="title">Title:</label>
+      <input name="title" id="title" [(ngModel)]="location.title" placeholder="title" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input name="description" id="description" [(ngModel)]="location.description" placeholder="description" />
+    </div>
+
+    <div class="form-group">
+      <label for="place">Place:</label>
+      <input name="place" id="place" [(ngModel)]="location.place" placeholder="place" />
+    </div>
+  </form>
+  <button mat-button (click)=updateLocation()>Save changes</button>
+  <button mat-button color="warn" (click)="removeLocation()">Remove location</button>
+</mat-card>
