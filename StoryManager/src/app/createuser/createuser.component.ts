@@ -48,7 +48,9 @@ export class CreateuserComponent implements OnInit {
     // New Users get the User role by default.
     this.user.role = ROLES.USER;
 
-    this.userService.addUser(this.user);
-    this.router.navigate(['users']);
+    this.userService.register(this.user)
+      .subscribe(result => {
+        this.router.navigate(['stories']);
+      });
   }
 }

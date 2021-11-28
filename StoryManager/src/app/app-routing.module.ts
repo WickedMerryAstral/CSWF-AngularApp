@@ -10,8 +10,9 @@ import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
+  { path: "", component: LoginComponent },
   { path: "users", component: UsersComponent },
-  { path: "users/new", component: CreateuserComponent },
+  { path: "users/register", component: CreateuserComponent },
   { path: "users/login", component: LoginComponent },
   { path: "stories", component: StoriesComponent },
   { path: "stories/new", component: CreatestoryComponent },

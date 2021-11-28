@@ -30,7 +30,9 @@ import { LoginComponent } from './login/login.component';
 import { CreatestoryComponent } from './createstory/createstory.component';
 import { LocationsComponent } from './locations/locations.component';
 import { LocationdetailsComponent } from './locationdetails/locationdetails.component';
-import { CreatelocationComponent } from './createlocation/createlocation.component'
+import { CreatelocationComponent } from './createlocation/createlocation.component';
+import { DebugComponent } from './debug/debug.component'
+import { WebtokenService } from './webtoken.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { CreatelocationComponent } from './createlocation/createlocation.compone
     CreatestoryComponent,
     LocationsComponent,
     LocationdetailsComponent,
-    CreatelocationComponent
+    CreatelocationComponent,
+    DebugComponent
   ],
   imports: [
     HttpClientModule,
@@ -67,7 +70,9 @@ import { CreatelocationComponent } from './createlocation/createlocation.compone
     NoopAnimationsModule,
     RouterModule
   ],
-  providers: [],
+  providers: [
+    WebtokenService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

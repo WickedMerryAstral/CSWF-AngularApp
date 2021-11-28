@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { User } from '../model/user';
 
 @Injectable({
@@ -25,6 +25,7 @@ export class WebtokenService {
   }
 
   setUser(user: User) {
+    console.log(user);
     this.user = user;
   }
 }

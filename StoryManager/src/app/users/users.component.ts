@@ -32,6 +32,6 @@ export class UsersComponent implements OnInit {
   }
 
   addUser(): void {
-    this.router.navigate(['users/new']);
+    this.router.navigate(['users/register']);
   }
 }
