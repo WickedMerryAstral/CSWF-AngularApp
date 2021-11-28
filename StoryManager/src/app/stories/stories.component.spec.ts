@@ -26,4 +26,8 @@ describe('StoriesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('displays a list of stories', () => {
+    expect(component.stories).not.toBeNull();
+  });
 });
