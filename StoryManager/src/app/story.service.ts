@@ -70,7 +70,9 @@ export class StoryService {
 
   // Getting stories for a given users.
   getStoriesByUser(userID: String): Observable<any> {
-    var ID = userID.replace(/['"]+/g, '');
+    if (userID !== undefined) {
+      var ID = userID.replace(/['"]+/g, '');
+    }
       
     return this.http.get(ConnectionString + "/api/stories/user/" + ID, this.httpOptions)
       .pipe(

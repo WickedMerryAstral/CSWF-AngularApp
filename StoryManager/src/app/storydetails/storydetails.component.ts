@@ -28,12 +28,12 @@ export class StorydetailsComponent implements OnInit {
   }
 
   removeStory() {
-    if (confirm("Are you sure you want to delete " + this.story.title + "?")) {
-      this.storyService.deleteStory(this.story)
-        .subscribe(result => {
-          this.router.navigate(['stories']);
-        });
-    }
+      if (confirm("Are you sure you want to delete " + this.story.title + "?")) {
+        this.storyService.deleteStory(this.story)
+          .subscribe(result => {
+            this.router.navigate(['stories']);
+          });
+      }
   }
 
   updateStory() {
