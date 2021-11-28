@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROLES, User } from '../../model/user';
 import { UserService } from '../user.service';
+import { WebtokenService } from '../webtoken.service';
 
 @Component({
   selector: 'app-createuser',
@@ -34,7 +35,8 @@ export class CreateuserComponent implements OnInit {
 
   constructor(
     userService: UserService,
-    router: Router) {
+    router: Router,
+    private webtoken: WebtokenService) {
     this.userService = userService;
     this.router = router;
   }
@@ -50,7 +52,9 @@ export class CreateuserComponent implements OnInit {
 
     this.userService.register(this.user)
       .subscribe(result => {
-        this.router.navigate(['stories']);
+        // Setting user upon registering
+        this.webtoken.setUser(this.user);
+        this.router.navigate(['users/login']);
       });
   }
 }

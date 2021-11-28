@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Story } from '../../model/story';
 import { StoryService } from '../story.service';
+import { WebtokenService } from '../webtoken.service';
 
 @Component({
   selector: 'app-stories',
@@ -11,12 +12,18 @@ import { StoryService } from '../story.service';
 export class StoriesComponent implements OnInit {
 
   stories: Story[];
+  userID: String;
 
   constructor(private storyService: StoryService,
-    private router: Router) { }
+    private router: Router,
+    private webToken: WebtokenService) { }
 
   ngOnInit(): void {
-    this.storyService.getStories()
+    this.webToken.getUser()
+      .subscribe(result => {
+        this.userID = result._id;
+      });
+    this.storyService.getStoriesByUser(this.userID)
       .subscribe(result => this.stories = result);
   }
 
