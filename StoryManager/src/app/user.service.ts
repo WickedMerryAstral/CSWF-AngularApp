@@ -40,7 +40,7 @@ export class UserService {
   }
 
   register(user: User): Observable<any> {
-    return this.http.post(ConnectionString + '/api/users/', user, this.httpOptions)
+    return this.http.post(ConnectionString + '/api/users', user, this.httpOptions)
       .pipe(
         tap(
           error => {

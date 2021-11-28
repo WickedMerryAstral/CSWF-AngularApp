@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Story } from '../../model/story';
+import { StoryService } from '../story.service';
 
 @Component({
   selector: 'app-stories',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoriesComponent implements OnInit {
 
-  constructor() { }
+  stories: Story[];
+
+  constructor(private storyService: StoryService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.storyService.getStories()
+      .subscribe(result => this.stories = result);
   }
 
+  selectedStory?: Story;
+  onSelect(story: Story): void {
+    this.selectedStory = story;
+  }
+
+  addStory(): void {
+    this.router.navigate(['stories/new']);
+  }
 }

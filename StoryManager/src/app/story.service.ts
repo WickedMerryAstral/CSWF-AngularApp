@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebtokenService } from './webtoken.service';
 import { ConnectionString } from './config';
 import { Observable, tap } from 'rxjs';
+import { Story } from '../model/story';
 
 
 @Injectable({
@@ -10,22 +11,44 @@ import { Observable, tap } from 'rxjs';
 })
 export class StoryService {
 
+  httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + this.token.getJwtToken()
+    })
+  };
+
   constructor(private http: HttpClient,
     private token: WebtokenService) { }
 
-  postStory() {
+  // Adding a story to the currently active user.
+  postStory(story: Story) : Observable<any>{
+    console.log(story);
 
+    return this.http.post(ConnectionString + "/api/stories/users/" + story.author._id, story, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            return error;
+          }
+        )
+      )
   }
 
+  // Getting stories for a given users.
   getStoriesByUser(userID: String): Observable<any> {
-    var httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.token.getJwtToken()
-      })
-    };
+    return this.http.get(ConnectionString + "/api/stories/users/" + userID, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            return error;
+          }
+        )
+      )
+  }
 
-    return this.http.get(ConnectionString + "/api/stories/users/" + userID, httpOptions)
+  getStories(): Observable<any> {
+    return this.http.get(ConnectionString + "/api/stories/", this.httpOptions)
       .pipe(
         tap(
           error => {

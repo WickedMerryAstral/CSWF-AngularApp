@@ -26,7 +26,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './navigation/navigation.component';
 import { StoriesComponent } from './stories/stories.component';
 import { StorydetailsComponent } from './storydetails/storydetails.component';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { CreatestoryComponent } from './createstory/createstory.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LoginComponent } from './login/login.component'
     NavigationComponent,
     StoriesComponent,
     StorydetailsComponent,
-    LoginComponent
+    LoginComponent,
+    CreatestoryComponent
   ],
   imports: [
     HttpClientModule,
