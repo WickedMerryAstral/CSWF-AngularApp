@@ -1,1 +1,18 @@
-<p>storydetails works!</p>
+<div>
+  <mat-card>
+    <mat-card-title>{{story.title}}</mat-card-title>
+    <form>
+      <div class="form-group">
+        <label for="title" name="title">Title:</label>
+        <input name="title" id="title" [(ngModel)]="story.title" placeholder="title" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input name="description" id="description" [(ngModel)]="story.description" placeholder="description" />
+      </div>
+    </form>
+    <button mat-button (click)="updateStory()">Save</button>
+    <button mat-button color="warn" (click)="removeStory()">Delete Story</button>
+  </mat-card>
+</div>

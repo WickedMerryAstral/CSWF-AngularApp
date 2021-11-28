@@ -23,6 +23,7 @@ export class StoriesComponent implements OnInit {
   selectedStory?: Story;
   onSelect(story: Story): void {
     this.selectedStory = story;
+    this.router.navigate(['stories', story._id]);
   }
 
   addStory(): void {

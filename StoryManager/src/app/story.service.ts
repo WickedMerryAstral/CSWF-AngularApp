@@ -40,6 +40,34 @@ export class StoryService {
       )
   }
 
+  updateStory(story: Story): Observable<any> {
+    return this.http.put(ConnectionString + "/api/stories/" + story._id, {
+      "storyID": story._id,
+      "title": story.title,
+      "description": story.description
+    }, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            console.log(error);
+            return error;
+          }
+        )
+      )
+  }
+
+  deleteStory(story: Story): Observable<any> {
+    return this.http.delete(ConnectionString + "/api/stories/" + story._id, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            console.log(error);
+            return error;
+          }
+        )
+      )
+  }
+
   // Getting stories for a given users.
   getStoriesByUser(userID: String): Observable<any> {
     return this.http.get(ConnectionString + "/api/stories/users/" + userID, this.httpOptions)
@@ -54,6 +82,17 @@ export class StoryService {
 
   getStories(): Observable<any> {
     return this.http.get(ConnectionString + "/api/stories/", this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            return error;
+          }
+        )
+      )
+  }
+
+  getStoryByID(storyID: String): Observable<any> {
+    return this.http.get(ConnectionString + "/api/stories/" + storyID, this.httpOptions)
       .pipe(
         tap(
           error => {
