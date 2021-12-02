@@ -13,18 +13,31 @@ export class StoriesComponent implements OnInit {
 
   stories: Story[];
   userID: String;
+  gridColumns: Number;
 
   constructor(private storyService: StoryService,
     private router: Router,
     private webToken: WebtokenService) { }
 
   ngOnInit(): void {
+
+    // Default grid column set.
+    this.gridColumns = 3;
+
     this.webToken.getUser()
       .subscribe(result => {
         this.userID = result._id;
       });
-    this.storyService.getStoriesByUser(this.userID)
-      .subscribe(result => this.stories = result);
+    //this.storyService.getStoriesByUser(this.userID)
+    //  .subscribe(result => this.stories = result);
+
+    this.storyService.getStories()
+      .subscribe((result) => {
+        this.stories = result
+        this.stories.forEach(story => {
+          story.img = '/assets/placeholder.png';
+        });
+      });
   }
 
   selectedStory?: Story;
