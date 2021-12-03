@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridList, MatGridListModule } from '@angular/material/grid-list'
 import { MatCardImage, MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -38,6 +39,8 @@ import { EventsComponent } from './events/events.component';
 import { EventdetailsComponent } from './eventdetails/eventdetails.component';
 import { CharactersComponent } from './characters/characters.component';
 import { CharacterdetailsComponent } from './characterdetails/characterdetails.component';
+import { ImagesComponent } from './images/images.component';
+import { CreateeventComponent } from './createevent/createevent.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import { CharacterdetailsComponent } from './characterdetails/characterdetails.c
     EventsComponent,
     EventdetailsComponent,
     CharactersComponent,
-    CharacterdetailsComponent
+    CharacterdetailsComponent,
+    ImagesComponent,
+    CreateeventComponent
   ],
   imports: [
     HttpClientModule,
@@ -72,6 +77,7 @@ import { CharacterdetailsComponent } from './characterdetails/characterdetails.c
     MatInputModule,
     MatButtonModule,
     MatCardModule,
+    MatTabsModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatOptionModule,

@@ -5,19 +5,28 @@
       <form>
         <div class="form-group">
           <label for="title" name="title">Title:</label>
+          <br />
           <input name="title" id="title" [(ngModel)]="story.title" placeholder="title" />
         </div>
 
         <div class="form-group">
           <label for="description">Description:</label>
+          <br />
           <input name="description" id="description" [(ngModel)]="story.description" placeholder="description" />
         </div>
       </form>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="updateStory()">Save</button>
-      <button mat-button color="warn" (click)="removeStory()">Delete Story</button>
+      <button mat-button color="warn" (click)="removeStory()">Delete</button>
     </mat-card-actions>
   </mat-card>
-  <app-locations></app-locations>
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Locations">
+      <app-locations></app-locations>
+    </mat-tab>
+    <mat-tab label="Events">
+      <app-events></app-events>
+    </mat-tab>
+  </mat-tab-group>
 </div>

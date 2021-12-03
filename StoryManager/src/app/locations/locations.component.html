@@ -1,12 +1,16 @@
-<mat-card>
-  <mat-card-title>Locations</mat-card-title>
-  <ul class="list-group">
-    <li class="list-group-item" [class.active]="selectedLocation == location" *ngFor="let location of locations" (click)="onSelect(location)">
-      {{location.title}}
-    </li>
-  </ul>
+  <h2>Locations</h2>
+  <mat-grid-list cols="3" rows="3" *ngFor="let location of locations">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-subtitle><b>{{location.place}}</b></mat-card-subtitle>
+          <mat-card-title>{{location.title}}</mat-card-title>
+          <mat-card-subtitle>{{location.description}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button (click)="onSelect(location)">Details</button>
+        </mat-card-actions>
+      </mat-card>
+  </mat-grid-list>
+<div class="container">
   <button mat-button color="primary" (click)="addLocation()">Add Location</button>
-</mat-card>
-<div *ngIf="selectedLocation">
-  <app-locationdetails [location]="selectedLocation"></app-locationdetails>
 </div>

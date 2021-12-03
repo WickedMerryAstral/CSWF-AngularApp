@@ -19,8 +19,8 @@ export class LocationsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.storyID = this.activeRoute.snapshot.paramMap.get('id');
-    this.locationService.getLocations(this.storyID)
+    this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
+    this.locationService.getLocationsByStory(this.storyID)
       .subscribe(result => this.locations = result);
   }
 
@@ -30,6 +30,7 @@ export class LocationsComponent implements OnInit {
 
   selectedLocation?: Location;
   onSelect(location: Location) {
-    this.selectedLocation = location;
+    // Route to location details
+    this.router.navigate(['stories/' + this.storyID + '/locations/' + location._id])
   }
 }

@@ -10,8 +10,9 @@ import { LocationService } from '../location.service';
 })
 export class LocationdetailsComponent implements OnInit {
 
-  @Input() location: Location;
+  location: Location;
   storyID: String;
+  locationID: String;
 
   constructor(
     private locationService: LocationService,
@@ -19,7 +20,12 @@ export class LocationdetailsComponent implements OnInit {
     private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.storyID = this.activeRoute.snapshot.paramMap.get('id');
+    this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
+    this.locationID = this.activeRoute.snapshot.paramMap.get("locationID");
+
+    this.locationService.getLocation(this.locationID)
+      .subscribe(result => this.location = result);
+    // Get specific locations, do the same for events, etc.
   }
 
   removeLocation(): void {

@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '../../model/location';
-import { LocationService } from '../location.service';
+import { EventService } from '../event.service';
 import { WebtokenService } from '../webtoken.service';
+import { Event } from '../../model/event';
+
 
 @Component({
-  selector: 'app-createlocation',
-  templateUrl: './createlocation.component.html',
-  styleUrls: ['./createlocation.component.css']
+  selector: 'app-createevent',
+  templateUrl: './createevent.component.html',
+  styleUrls: ['./createevent.component.css']
 })
-export class CreatelocationComponent implements OnInit {
+export class CreateeventComponent implements OnInit {
 
   constructor(
-    private locationService: LocationService,
+    private eventService: EventService,
     private router: Router,
     private webtoken: WebtokenService,
     private activeRoute: ActivatedRoute) {
@@ -21,25 +22,25 @@ export class CreatelocationComponent implements OnInit {
 
   storyID: String;
 
-  location: Location;
-  locationForm = new FormGroup({
+  event: Event;
+  eventForm = new FormGroup({
     title: new FormControl('',
       Validators.required),
     description: new FormControl('',
       Validators.required),
-    place: new FormControl('',
+    date: new FormControl('',
       Validators.required)
   });
 
   // Getters for Form.
   get title() {
-    return this.locationForm.get('title');
+    return this.eventForm.get('title');
   }
   get description() {
-    return this.locationForm.get('description');
+    return this.eventForm.get('description');
   }
-  get place() {
-    return this.locationForm.get('place');
+  get date() {
+    return this.eventForm.get('date');
   }
 
   ngOnInit(): void {
@@ -47,10 +48,11 @@ export class CreatelocationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.location = this.locationForm.value;
-    this.locationService.postLocation(this.location, this.storyID)
-      .subscribe(result => {
-        this.router.navigate(['stories']);
+    this.event = this.eventForm.value;
+    this.eventService.postEvent(this.event, this.storyID)
+      .subscribe((result) => {
+        this.router.navigate(['stories/' + this.storyID]);
       });
   }
+
 }

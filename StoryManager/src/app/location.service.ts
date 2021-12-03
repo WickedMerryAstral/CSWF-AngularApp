@@ -21,11 +21,23 @@ export class LocationService {
     private token: WebtokenService,
     private http: HttpClient) { }
 
-  getLocations(storyID: String): Observable<any> {
+  getLocationsByStory(storyID: String): Observable<any> {
     return this.http.get(ConnectionString + "/api/locations/story/" + storyID, this.httpOptions)
       .pipe(
         tap(
           error => {
+            return error;
+          }
+        )
+      )
+  }
+
+  getLocation(locationID: String): Observable<any> {
+    return this.http.get(ConnectionString + "/api/locations/" + locationID, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            console.log(error);
             return error;
           }
         )
