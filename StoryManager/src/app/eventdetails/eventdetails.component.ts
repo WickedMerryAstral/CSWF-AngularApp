@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Event } from '../../model/event';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-eventdetails',
@@ -7,9 +11,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventdetailsComponent implements OnInit {
 
-  constructor() { }
+  event: Event;
+  storyID: String;
+  eventID: String;
 
-  ngOnInit(): void {
+  constructor(
+    private eventService: EventService,
+    private router: Router,
+    private activeRoute: ActivatedRoute) { }
+
+  eventForm = new FormGroup({
+    title: new FormControl('',
+      Validators.required),
+    description: new FormControl('',
+      Validators.required),
+    date: new FormControl('',
+      Validators.required)
+  });
+
+  // Getters for Form.
+  get title() {
+    return this.eventForm.get('title');
+  }
+  get description() {
+    return this.eventForm.get('description');
+  }
+  get date() {
+    return this.eventForm.get('date');
   }
 
+  ngOnInit(): void {
+    this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
+    this.eventID = this.activeRoute.snapshot.paramMap.get('eventID');
+
+    this.eventService.getEvent(this.eventID)
+      .subscribe(result => this.event = result);
+    // Get specific locations, do the same for events, etc.
+  }
+
+  removeEvent(): void {
+    if (confirm("Are you sure you want to delete " + this.event.title + "?")) {
+      this.eventService.removeEvent(this.eventID)
+        .subscribe(result => {
+          this.router.navigate(['stories/' + this.storyID]);
+        });
+    }
+  }
+
+  updateEvent(): void {
+    this.eventService.updateEvent(this.event)
+      .subscribe(result => {
+        this.router.navigate(['stories/' + this.storyID]);
+      });
+  }
 }

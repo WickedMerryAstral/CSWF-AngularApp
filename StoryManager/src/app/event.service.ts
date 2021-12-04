@@ -43,4 +43,44 @@ export class EventService {
         )
       )
   }
+
+  removeEvent(eventID: String): Observable<any> {
+    return this.http.delete(ConnectionString + "/api/events/" + eventID, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            console.log(error);
+            return error;
+          }
+        )
+      )
+  }
+
+  getEvent(eventID: String): Observable<any> {
+    return this.http.get(ConnectionString + "/api/events/" + eventID, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            console.log(error);
+            return error;
+          }
+        )
+      )
+  }
+
+  updateEvent(event: Event): Observable<any> {
+    return this.http.put(ConnectionString + "/api/events/" + event._id, {
+      "title": event.title,
+      "description": event.description,
+      "date": event.date
+    }, this.httpOptions)
+      .pipe(
+        tap(
+          error => {
+            console.log(error);
+            return error;
+          }
+        )
+      )
+  }
 }

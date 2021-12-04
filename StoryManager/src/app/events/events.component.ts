@@ -21,7 +21,10 @@ export class EventsComponent implements OnInit {
   ngOnInit(): void {
     this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
     this.eventService.getEventsByStory(this.storyID)
-      .subscribe(result => this.events = result);
+      .subscribe((result) => {
+        this.events = result
+        this.setCharacterPreview();
+      });
   }
 
   addEvent(): void {
@@ -32,5 +35,11 @@ export class EventsComponent implements OnInit {
   onSelect(event: Event) {
     // Route to location details
     this.router.navigate(['stories/' + this.storyID + '/events/' + event._id])
+  }
+
+  setCharacterPreview(): void {
+    this.events.forEach(event => {
+      event.characterPreview = 'Characters: ' + event.characters.length;
+    });
   }
 }

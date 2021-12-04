@@ -6,4 +6,5 @@ export class Event {
   description: String;
   date: Date;
   characters: Character[];
+  characterPreview: String;
 }

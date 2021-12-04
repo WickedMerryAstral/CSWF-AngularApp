@@ -21,7 +21,10 @@ export class LocationsComponent implements OnInit {
   ngOnInit(): void {
     this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
     this.locationService.getLocationsByStory(this.storyID)
-      .subscribe(result => this.locations = result);
+      .subscribe((result) => {
+        this.locations = result
+        this.setCharacterPreview();
+      });
   }
 
   addLocation(): void {
@@ -32,5 +35,11 @@ export class LocationsComponent implements OnInit {
   onSelect(location: Location) {
     // Route to location details
     this.router.navigate(['stories/' + this.storyID + '/locations/' + location._id])
+  }
+
+  setCharacterPreview(): void {
+    this.locations.forEach(loc => {
+      loc.characterPreview = 'Characters: ' + loc.characters.length;
+    });
   }
 }

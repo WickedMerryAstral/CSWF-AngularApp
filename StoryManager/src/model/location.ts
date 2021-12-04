@@ -6,4 +6,5 @@ export class Location {
   description: String;
   place: String;
   characters: Character[];
+  characterPreview: String;
 }

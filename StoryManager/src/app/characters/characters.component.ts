@@ -16,6 +16,7 @@ export class CharactersComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.source);
   }
 
 }
