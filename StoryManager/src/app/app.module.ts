@@ -41,6 +41,8 @@ import { CharactersComponent } from './characters/characters.component';
 import { CharacterdetailsComponent } from './characterdetails/characterdetails.component';
 import { ImagesComponent } from './images/images.component';
 import { CreateeventComponent } from './createevent/createevent.component';
+import { HomeComponent } from './home/home.component';
+import { CreatecharacterComponent } from './createcharacter/createcharacter.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { CreateeventComponent } from './createevent/createevent.component';
     CharactersComponent,
     CharacterdetailsComponent,
     ImagesComponent,
-    CreateeventComponent
+    CreateeventComponent,
+    HomeComponent,
+    CreatecharacterComponent
   ],
   imports: [
     HttpClientModule,
@@ -84,7 +88,7 @@ import { CreateeventComponent } from './createevent/createevent.component';
     MatSelectModule,
     NoopAnimationsModule,
     RouterModule,
-    MatGridListModule
+    MatGridListModule,
   ],
   providers: [
     WebtokenService
