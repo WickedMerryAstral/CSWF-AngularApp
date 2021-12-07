@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +12,8 @@ import { CharacterService } from '../character.service';
 })
 export class CharacterdetailsComponent implements OnInit {
 
-  startValue: {};
+  pipe = new DatePipe('en-US');
+
   PRONOUNS = [
     { name: 'He/Him', value: 'he/him' },
     { name: 'She/Her', value: 'she/her' },
@@ -61,17 +63,18 @@ export class CharacterdetailsComponent implements OnInit {
     this.eventID = this.activeRoute.snapshot.paramMap.get('eventID');
     this.characterID = this.activeRoute.snapshot.paramMap.get('characterID');
 
+
     this.charaService.getCharacter(this.characterID)
       .subscribe(result => {
         this.character = result;
 
-        var i = 0;
+        const temp = this.character.birthdate;
+        const displayDate = this.pipe.transform(temp, 'yyyy-MM-dd');
+
         this.PRONOUNS.forEach(p => {
           if (this.character.pronouns == p.value) {
-            this.startValue = p;
-            this.characterForm.patchValue({ pronouns: p, birthdate: this.character.birthdate.getDate });
+            this.characterForm.patchValue({ pronouns: p, birthdate: displayDate });
           }
-          i = i + 1;
         });
       });
   }
