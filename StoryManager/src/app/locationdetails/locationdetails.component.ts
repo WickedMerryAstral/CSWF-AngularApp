@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '../../model/location';
 import { LocationService } from '../location.service';
@@ -10,9 +11,29 @@ import { LocationService } from '../location.service';
 })
 export class LocationdetailsComponent implements OnInit {
 
-  location: Location;
   storyID: String;
   locationID: String;
+
+  location: Location;
+  locationForm = new FormGroup({
+    title: new FormControl('',
+      Validators.required),
+    description: new FormControl('',
+      Validators.required),
+    place: new FormControl('',
+      Validators.required)
+  });
+
+  // Getters for Form.
+  get title() {
+    return this.locationForm.get('title');
+  }
+  get description() {
+    return this.locationForm.get('description');
+  }
+  get place() {
+    return this.locationForm.get('place');
+  }
 
   constructor(
     private locationService: LocationService,
@@ -32,7 +53,7 @@ export class LocationdetailsComponent implements OnInit {
     if (confirm("Are you sure you want to delete " + this.location.title + "?")) {
       this.locationService.removeLocation(this.location)
         .subscribe(result => {
-          this.router.navigate(['stories']);
+          this.router.navigate(['stories' + this.storyID]);
         });
     }
   }
@@ -40,7 +61,7 @@ export class LocationdetailsComponent implements OnInit {
   updateLocation(): void {
     this.locationService.updateLocation(this.location)
       .subscribe(result => {
-        this.router.navigate(['stories']);
+        this.router.navigate(['stories/' + this.storyID]);
       });
   }
 }

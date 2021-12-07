@@ -36,8 +36,7 @@ export class CreatecharacterComponent implements OnInit {
       Validators.required),
     pronouns: new FormControl('',
       Validators.required),
-    description: new FormControl('',
-      Validators.required),
+    description: new FormControl(''),
     birthdate: new FormControl('',
       Validators.required),
   });
@@ -64,20 +63,22 @@ export class CreatecharacterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.character = this.characterForm.value;
-    this.character.pronouns = this.characterForm.get('pronouns').value.value;
+    if (this.characterForm.valid) {
+      this.character = this.characterForm.value;
+      this.character.pronouns = this.characterForm.get('pronouns').value.value;
 
-    if (this.eventID !== null) {
-      this.charaService.postCharacterToEvent(this.character, this.eventID)
-        .subscribe(result => {
-          this.router.navigate(['stories/' + this.storyID + /events/ + this.eventID]);
-        });
-    }
-    if (this.locationID !== null) {
-      this.charaService.postCharacterToLocation(this.character, this.locationID)
-        .subscribe(result => {
-          this.router.navigate(['stories/' + this.storyID + /locations/ + this.locationID]);
-        });
+      if (this.eventID !== null) {
+        this.charaService.postCharacterToEvent(this.character, this.eventID)
+          .subscribe(result => {
+            this.router.navigate(['stories/' + this.storyID + /events/ + this.eventID]);
+          });
+      }
+      if (this.locationID !== null) {
+        this.charaService.postCharacterToLocation(this.character, this.locationID)
+          .subscribe(result => {
+            this.router.navigate(['stories/' + this.storyID + /locations/ + this.locationID]);
+          });
+      }
     }
   }
 }

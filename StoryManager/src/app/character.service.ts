@@ -80,7 +80,14 @@ export class CharacterService {
   }
 
   updateCharacter(chara: Character): Observable<any> {
-    return this.http.put(ConnectionString + "/api/characters/" + chara._id, chara, this.httpOptions)
+    return this.http.put(ConnectionString + "/api/characters/" + chara._id,
+      {
+        "name": chara.name,
+        "pronouns": chara.pronouns,
+        "description": chara.description,
+        "birthdate": chara.birthdate
+      }
+      , this.httpOptions)
       .pipe(
         tap(
           error => {
