@@ -44,8 +44,8 @@ export class EventService {
       )
   }
 
-  removeEvent(eventID: String): Observable<any> {
-    return this.http.delete(ConnectionString + "/api/events/" + eventID, this.httpOptions)
+  removeEvent(eventID: String, storyID: String): Observable<any> {
+    return this.http.delete(ConnectionString + "/api/events/story/" + storyID + "/" + eventID, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -56,8 +56,8 @@ export class EventService {
       )
   }
 
-  getEvent(eventID: String): Observable<any> {
-    return this.http.get(ConnectionString + "/api/events/" + eventID, this.httpOptions)
+  getEvent(eventID: String, storyID: String): Observable<any> {
+    return this.http.get(ConnectionString + "/api/events/story/" + storyID + "/" + eventID, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -68,8 +68,8 @@ export class EventService {
       )
   }
 
-  updateEvent(event: Event): Observable<any> {
-    return this.http.put(ConnectionString + "/api/events/" + event._id, {
+  updateEvent(event: Event, storyID: String): Observable<any> {
+    return this.http.put(ConnectionString + "/api/events/story/" + storyID + "/" + event._id, {
       "title": event.title,
       "description": event.description,
       "date": event.date

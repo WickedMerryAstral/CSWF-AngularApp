@@ -43,14 +43,14 @@ export class LocationdetailsComponent implements OnInit {
     this.storyID = this.activeRoute.snapshot.paramMap.get("storyID");
     this.locationID = this.activeRoute.snapshot.paramMap.get("locationID");
 
-    this.locationService.getLocation(this.locationID)
+    this.locationService.getLocation(this.locationID, this.storyID)
       .subscribe(result => this.location = result);
     // Get specific locations, do the same for events, etc.
   }
 
   removeLocation(): void {
     if (confirm("Are you sure you want to delete " + this.location.title + "?")) {
-      this.locationService.removeLocation(this.location)
+      this.locationService.removeLocation(this.location, this.storyID)
         .subscribe(result => {
           this.router.navigate(['stories' + this.storyID]);
         });
@@ -59,7 +59,7 @@ export class LocationdetailsComponent implements OnInit {
 
   updateLocation(): void {
     if (this.locationForm.valid) {
-      this.locationService.updateLocation(this.location)
+      this.locationService.updateLocation(this.location, this.storyID)
         .subscribe(result => {
           this.router.navigate(['stories/' + this.storyID]);
         });

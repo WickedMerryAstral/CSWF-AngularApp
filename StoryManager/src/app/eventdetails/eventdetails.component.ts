@@ -47,7 +47,7 @@ export class EventdetailsComponent implements OnInit {
     this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
     this.eventID = this.activeRoute.snapshot.paramMap.get('eventID');
 
-    this.eventService.getEvent(this.eventID)
+    this.eventService.getEvent(this.eventID, this.storyID)
       .subscribe(result => {
         this.event = result
 
@@ -61,7 +61,7 @@ export class EventdetailsComponent implements OnInit {
 
   removeEvent(): void {
     if (confirm("Are you sure you want to delete " + this.event.title + "?")) {
-      this.eventService.removeEvent(this.eventID)
+      this.eventService.removeEvent(this.eventID, this.storyID)
         .subscribe(result => {
           this.router.navigate(['stories/' + this.storyID]);
         });
@@ -70,7 +70,7 @@ export class EventdetailsComponent implements OnInit {
 
   updateEvent(): void {
     if (this.eventForm.valid) {
-      this.eventService.updateEvent(this.event)
+      this.eventService.updateEvent(this.event, this.storyID)
         .subscribe(result => {
           this.router.navigate(['stories/' + this.storyID]);
         });

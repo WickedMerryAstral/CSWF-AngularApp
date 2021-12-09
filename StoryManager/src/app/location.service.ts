@@ -32,8 +32,8 @@ export class LocationService {
       )
   }
 
-  getLocation(locationID: String): Observable<any> {
-    return this.http.get(ConnectionString + "/api/locations/" + locationID, this.httpOptions)
+  getLocation(locationID: String, storyID: String): Observable<any> {
+    return this.http.get(ConnectionString + "/api/locations/story/" + storyID + "/" + locationID, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -56,8 +56,8 @@ export class LocationService {
       )
   }
 
-  updateLocation(location: Location): Observable<any> {
-    return this.http.put(ConnectionString + "/api/locations/" + location._id, {
+  updateLocation(location: Location, storyID: String): Observable<any> {
+    return this.http.put(ConnectionString + "/api/locations/story/" + storyID + "/" + location._id, {
       "title": location.title,
       "description": location.description,
       "place": location.place
@@ -72,8 +72,8 @@ export class LocationService {
       )
   }
 
-  removeLocation(location: Location): Observable<any> {
-    return this.http.delete(ConnectionString + "/api/locations/" + location._id, this.httpOptions)
+  removeLocation(location: Location, storyID: String): Observable<any> {
+    return this.http.delete(ConnectionString + "/api/locations/story/" + storyID + "/" + location._id, this.httpOptions)
       .pipe(
         tap(
           error => {

@@ -33,7 +33,7 @@ export class NavigationComponent implements OnInit {
   }
 
   logOut(): void {
-    this.webtoken.clearUser();
     this.loggedIn = false;
+    this.webtoken.clearUser();
   }
 }

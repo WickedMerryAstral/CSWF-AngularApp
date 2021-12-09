@@ -23,7 +23,7 @@ export class CreatecharacterComponent implements OnInit {
     { name: 'He/Him', value: 'he/him' },
     { name: 'She/Her', value: 'she/her' },
     { name: 'They/Them', value: 'they/them' },
-    { name: 'Other', value: 'Other' },
+    { name: 'Other', value: 'other' },
   ];
 
   storyID: String;
