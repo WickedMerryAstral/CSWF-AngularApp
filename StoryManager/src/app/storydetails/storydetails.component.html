@@ -2,17 +2,26 @@
   <mat-card>
     <mat-card-title>{{story.title}}</mat-card-title>
     <mat-card-content>
-      <form>
-        <div class="form-group">
-          <label for="title" name="title">Title:</label>
-          <br />
-          <input name="title" id="title" [(ngModel)]="story.title" placeholder="title" />
+      <form [formGroup]="storyForm">
+        <div>
+          <label>Title</label>
+          <input type="text" class="form-control" [(ngModel)]="story.title" formControlName="title" placeholder="title" required>
         </div>
+        <div>
+          <label>Description</label>
+          <input type="text" class="form-control" [(ngModel)]="story.description" formControlName="description" placeholder="description" required>
+        </div>
+        <div *ngIf="title?.invalid && title?.touched" class="alert alert-danger">
 
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <br />
-          <input name="description" id="description" [(ngModel)]="story.description" placeholder="description" />
+          <div *ngIf="title?.errors?.['required']">
+            Title is required.
+          </div>
+        </div>
+        <div *ngIf="description?.invalid && description?.touched" class="alert alert-danger">
+
+          <div *ngIf="description?.errors?.['required']">
+            Description is required.
+          </div>
         </div>
       </form>
     </mat-card-content>

@@ -68,13 +68,13 @@ export class CreatecharacterComponent implements OnInit {
       this.character.pronouns = this.characterForm.get('pronouns').value.value;
 
       if (this.eventID !== null) {
-        this.charaService.postCharacterToEvent(this.character, this.eventID)
+        this.charaService.postCharacterToEvent(this.character, this.eventID, this.storyID)
           .subscribe(result => {
             this.router.navigate(['stories/' + this.storyID + /events/ + this.eventID]);
           });
       }
       if (this.locationID !== null) {
-        this.charaService.postCharacterToLocation(this.character, this.locationID)
+        this.charaService.postCharacterToLocation(this.character, this.locationID, this.storyID)
           .subscribe(result => {
             this.router.navigate(['stories/' + this.storyID + /locations/ + this.locationID]);
           });

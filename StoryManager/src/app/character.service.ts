@@ -19,8 +19,8 @@ export class CharacterService {
     })
   };
 
-  postCharacterToEvent(chara: Character, eventID: String): Observable<any> {
-    return this.http.post(ConnectionString + "/api/characters/event/" + eventID, chara, this.httpOptions)
+  postCharacterToEvent(chara: Character, eventID: String, storyID: String): Observable<any> {
+    return this.http.post(ConnectionString + "/api/characters/story/"+ storyID +"/event/" + eventID, chara, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -31,8 +31,8 @@ export class CharacterService {
       )
   }
 
-  postCharacterToLocation(chara: Character, locationID: String): Observable<any> {
-    return this.http.post(ConnectionString + "/api/characters/location/" + locationID, chara, this.httpOptions)
+  postCharacterToLocation(chara: Character, locationID: String, storyID: String): Observable<any> {
+    return this.http.post(ConnectionString + "/api/characters/story/" + storyID +"/location/" + locationID, chara, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -43,8 +43,8 @@ export class CharacterService {
       )
   }
 
-  getCharacter(charaID: String): Observable<any> {
-    return this.http.get(ConnectionString + "/api/characters/" + charaID, this.httpOptions)
+  getCharacter(charaID: String, storyID: String): Observable<any> {
+    return this.http.get(ConnectionString + "/api/characters/story/"+ storyID +"/"+ charaID, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -55,8 +55,8 @@ export class CharacterService {
       )
   }
 
-  getCharactersByEvent(eventID: String): Observable<any> {
-    return this.http.get(ConnectionString + "/api/characters/event/" + eventID, this.httpOptions)
+  getCharactersByEvent(eventID: String, storyID: String): Observable<any> {
+    return this.http.get(ConnectionString + "/api/characters/story/" + storyID + "/event/" + eventID, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -67,8 +67,8 @@ export class CharacterService {
       )
   }
 
-  getCharactersByLocation(locationID: String): Observable<any> {
-    return this.http.get(ConnectionString + "/api/characters/location/" + locationID, this.httpOptions)
+  getCharactersByLocation(locationID: String, storyID: String): Observable<any> {
+    return this.http.get(ConnectionString + "/api/characters/story/" + storyID + "/location/" + locationID, this.httpOptions)
       .pipe(
         tap(
           error => {
@@ -79,8 +79,8 @@ export class CharacterService {
       )
   }
 
-  updateCharacter(chara: Character): Observable<any> {
-    return this.http.put(ConnectionString + "/api/characters/" + chara._id,
+  updateCharacter(chara: Character, storyID: String): Observable<any> {
+    return this.http.put(ConnectionString + "/api/characters/story/" + storyID + "/" + chara._id,
       {
         "name": chara.name,
         "pronouns": chara.pronouns,
@@ -98,8 +98,8 @@ export class CharacterService {
       )
   }
 
-  removeCharacter(charaID: String): Observable<any> {
-    return this.http.delete(ConnectionString + "/api/characters/" + charaID, this.httpOptions)
+  removeCharacter(charaID: String, storyID: String): Observable<any> {
+    return this.http.delete(ConnectionString + "/api/characters/story/" + storyID +"/"+ charaID, this.httpOptions)
       .pipe(
         tap(
           error => {

@@ -10,7 +10,6 @@ import { LocationService } from '../location.service';
   styleUrls: ['./locationdetails.component.css']
 })
 export class LocationdetailsComponent implements OnInit {
-
   storyID: String;
   locationID: String;
 
@@ -41,7 +40,7 @@ export class LocationdetailsComponent implements OnInit {
     private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
+    this.storyID = this.activeRoute.snapshot.paramMap.get("storyID");
     this.locationID = this.activeRoute.snapshot.paramMap.get("locationID");
 
     this.locationService.getLocation(this.locationID)
@@ -59,9 +58,11 @@ export class LocationdetailsComponent implements OnInit {
   }
 
   updateLocation(): void {
-    this.locationService.updateLocation(this.location)
-      .subscribe(result => {
-        this.router.navigate(['stories/' + this.storyID]);
-      });
+    if (this.locationForm.valid) {
+      this.locationService.updateLocation(this.location)
+        .subscribe(result => {
+          this.router.navigate(['stories/' + this.storyID]);
+        });
+    }
   }
 }

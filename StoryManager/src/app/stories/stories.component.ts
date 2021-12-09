@@ -21,6 +21,7 @@ export class StoriesComponent implements OnInit {
     private webToken: WebtokenService) { }
 
   ngOnInit(): void {
+
     if (!this.webToken.hasUser()) {
       this.router.navigate(['/users/login']);
     } else {
@@ -28,18 +29,16 @@ export class StoriesComponent implements OnInit {
       this.gridColumns = 3;
 
       this.webToken.getUser()
-        .subscribe(result => {
-          this.user = result;
-          console.log(this.user);
-          console.log(this.webToken.getJwtToken());
-        });
+        .subscribe(user => {
+          this.user = user;
 
-      this.storyService.getStories()
-        .subscribe((result) => {
-          this.stories = result
-          this.stories.forEach(story => {
-            story.img = '/assets/placeholder.png';
-          });
+          this.storyService.getStoriesByUser(this.user._id)
+            .subscribe((result) => {
+              this.stories = result;
+              this.stories.forEach(story => {
+                story.img = '/assets/placeholder.png';
+              });
+            });
         });
     }
   }

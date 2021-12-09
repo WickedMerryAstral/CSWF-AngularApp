@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject, Observable, of } from 'rxjs';
 import { User } from '../model/user';
@@ -8,7 +9,7 @@ import { User } from '../model/user';
 })
 export class WebtokenService {
 
-  constructor(private cookie: CookieService) { }
+  constructor(private cookie: CookieService, private router: Router) { }
 
   jwtToken: String;
   user: User;
@@ -18,7 +19,6 @@ export class WebtokenService {
   }
 
   getUser(): Observable<User> {
-    console.log(this.cookie.get('currentuser'));
     const temp = JSON.parse(this.cookie.get('currentuser'));
     return of(temp);
   }
@@ -32,6 +32,7 @@ export class WebtokenService {
     this.user = user;
     console.log(user);
     this.cookie.set('currentuser', JSON.stringify(user));
+    this.router.navigate(['stories']);
   }
 
   hasUser(): Boolean {
@@ -41,5 +42,6 @@ export class WebtokenService {
 
   clearUser() {
     this.cookie.deleteAll();
+    this.router.navigate(['users/login']);
   }
 }

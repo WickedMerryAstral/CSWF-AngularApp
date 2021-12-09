@@ -20,5 +20,4 @@ export class HomeComponent implements OnInit {
   openRegister() {
     this.router.navigate(['/users/register']);
   }
-
 }

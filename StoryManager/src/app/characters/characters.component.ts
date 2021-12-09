@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Console } from 'console';
 import { Character } from '../../model/character';
 import { CharacterService } from '../character.service';
 import { WebtokenService } from '../webtoken.service';
@@ -29,15 +30,14 @@ export class CharactersComponent implements OnInit {
     if (this.source == "EVENT") {
       this.eventID = this.activeRoute.snapshot.paramMap.get('eventID');
 
-      this.charaService.getCharactersByEvent(this.eventID)
+      this.charaService.getCharactersByEvent(this.eventID, this.storyID)
         .subscribe(result => {
           this.characters = result;
         });
 
     } else if (this.source == "LOCATION") {
       this.locationID = this.activeRoute.snapshot.paramMap.get('locationID');
-
-      this.charaService.getCharactersByLocation(this.locationID)
+      this.charaService.getCharactersByLocation(this.locationID, this.storyID)
         .subscribe(result => {
           this.characters = result;
         });

@@ -64,7 +64,7 @@ export class CharacterdetailsComponent implements OnInit {
     this.characterID = this.activeRoute.snapshot.paramMap.get('characterID');
 
 
-    this.charaService.getCharacter(this.characterID)
+    this.charaService.getCharacter(this.characterID, this.storyID)
       .subscribe(result => {
         this.character = result;
 
@@ -80,26 +80,28 @@ export class CharacterdetailsComponent implements OnInit {
   }
 
   updateCharacter() {
-    this.character = this.characterForm.value;
-    this.character._id = this.characterID;
-    this.character.pronouns = this.characterForm.get('pronouns').value.value;
+    if (this.characterForm.valid) {
+      this.character = this.characterForm.value;
+      this.character._id = this.characterID;
+      this.character.pronouns = this.characterForm.get('pronouns').value.value;
 
-    console.log(this.character);
+      console.log(this.character);
 
-    this.charaService.updateCharacter(this.character)
-      .subscribe(result => {
-        if (this.eventID != null) {
-          this.router.navigate(['stories/' + this.storyID + '/events/' + this.eventID])
-        }
-        if (this.locationID != null) {
-          this.router.navigate(['stories/' + this.storyID + '/locations/' + this.locationID])
-        }
-      });
+      this.charaService.updateCharacter(this.character, this.storyID)
+        .subscribe(result => {
+          if (this.eventID != null) {
+            this.router.navigate(['stories/' + this.storyID + '/events/' + this.eventID])
+          }
+          if (this.locationID != null) {
+            this.router.navigate(['stories/' + this.storyID + '/locations/' + this.locationID])
+          }
+        });
+    }
   }
 
   removeCharacter() {
     if (confirm("Are you sure you want to delete " + this.character.name + "?")) {
-      this.charaService.removeCharacter(this.characterID)
+      this.charaService.removeCharacter(this.characterID, this.storyID)
         .subscribe(result => {
           if (this.eventID != null) {
             this.router.navigate(['stories/' + this.storyID + '/events/' + this.eventID])

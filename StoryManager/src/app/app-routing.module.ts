@@ -16,7 +16,6 @@ import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "users", component: UsersComponent },
   { path: "users/register", component: CreateuserComponent },
   { path: "users/login", component: LoginComponent },
   { path: "stories", component: StoriesComponent },

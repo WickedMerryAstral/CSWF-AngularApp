@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from '../../model/story';
 import { StoryService } from '../story.service';
@@ -10,8 +11,22 @@ import { StoryService } from '../story.service';
 })
 export class StorydetailsComponent implements OnInit {
 
-  story: Story;
   id: String;
+  story: Story;
+  storyForm = new FormGroup({
+    title: new FormControl('',
+      Validators.required),
+    description: new FormControl('',
+      Validators.required),
+  });
+
+  // Getters for Form.
+  get title() {
+    return this.storyForm.get('title');
+  }
+  get description() {
+    return this.storyForm.get('description');
+  }
 
   constructor(
     private storyService: StoryService,
@@ -37,9 +52,11 @@ export class StorydetailsComponent implements OnInit {
   }
 
   updateStory() {
-    this.storyService.updateStory(this.story)
-      .subscribe(result => {
-        this.router.navigate(['stories']);
-      });
+    if (this.storyForm.valid) {
+      this.storyService.updateStory(this.story)
+        .subscribe(result => {
+          this.router.navigate(['stories']);
+        });
+    }
   }
 }

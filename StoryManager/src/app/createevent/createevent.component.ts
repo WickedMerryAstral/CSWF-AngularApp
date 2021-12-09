@@ -48,11 +48,13 @@ export class CreateeventComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.event = this.eventForm.value;
-    this.eventService.postEvent(this.event, this.storyID)
-      .subscribe((result) => {
-        this.router.navigate(['stories/' + this.storyID]);
-      });
+    if (this.eventForm.valid) {
+      this.event = this.eventForm.value;
+      this.eventService.postEvent(this.event, this.storyID)
+        .subscribe((result) => {
+          this.router.navigate(['stories/' + this.storyID]);
+        });
+    }
   }
 
 }

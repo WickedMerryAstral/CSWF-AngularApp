@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-title>{{location.title}}</mat-card-title>
     <mat-card-content>
-      <form [formGroup]="locationForm">
+      <form [formGroup]="locationForm" >
         <div>
           <label>Title</label>
           <input type="text" class="form-control" [(ngModel)]="location.title" formControlName="title" placeholder="title" required>

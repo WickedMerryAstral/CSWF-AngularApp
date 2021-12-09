@@ -69,9 +69,11 @@ export class EventdetailsComponent implements OnInit {
   }
 
   updateEvent(): void {
-    this.eventService.updateEvent(this.event)
-      .subscribe(result => {
-        this.router.navigate(['stories/' + this.storyID]);
-      });
+    if (this.eventForm.valid) {
+      this.eventService.updateEvent(this.event)
+        .subscribe(result => {
+          this.router.navigate(['stories/' + this.storyID]);
+        });
+    }
   }
 }

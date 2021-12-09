@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
   user: User;
   message?: String;
 
-  constructor(private webtoken: WebtokenService, private router: Router, private cookie: CookieService) { }
+  constructor(private webtoken: WebtokenService) { }
   ngOnInit(): void {
 
     this.loggedIn = false;
@@ -33,8 +33,7 @@ export class NavigationComponent implements OnInit {
   }
 
   logOut(): void {
-    this.cookie.delete('currentuser');
-    this.cookie.delete('jwt');
-    window.location.reload();
+    this.webtoken.clearUser();
+    this.loggedIn = false;
   }
 }
