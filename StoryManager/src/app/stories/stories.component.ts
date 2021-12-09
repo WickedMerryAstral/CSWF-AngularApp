@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Story } from '../../model/story';
+import { User } from '../../model/user';
 import { StoryService } from '../story.service';
 import { WebtokenService } from '../webtoken.service';
 
@@ -12,7 +13,7 @@ import { WebtokenService } from '../webtoken.service';
 export class StoriesComponent implements OnInit {
 
   stories: Story[];
-  userID: String;
+  user: User;
   gridColumns: Number;
 
   constructor(private storyService: StoryService,
@@ -20,24 +21,27 @@ export class StoriesComponent implements OnInit {
     private webToken: WebtokenService) { }
 
   ngOnInit(): void {
+    if (!this.webToken.hasUser()) {
+      this.router.navigate(['/users/login']);
+    } else {
+      // Default grid column set.
+      this.gridColumns = 3;
 
-    // Default grid column set.
-    this.gridColumns = 3;
-
-    this.webToken.getUser()
-      .subscribe(result => {
-        this.userID = result._id;
-      });
-    //this.storyService.getStoriesByUser(this.userID)
-    //  .subscribe(result => this.stories = result);
-
-    this.storyService.getStories()
-      .subscribe((result) => {
-        this.stories = result
-        this.stories.forEach(story => {
-          story.img = '/assets/placeholder.png';
+      this.webToken.getUser()
+        .subscribe(result => {
+          this.user = result;
+          console.log(this.user);
+          console.log(this.webToken.getJwtToken());
         });
-      });
+
+      this.storyService.getStories()
+        .subscribe((result) => {
+          this.stories = result
+          this.stories.forEach(story => {
+            story.img = '/assets/placeholder.png';
+          });
+        });
+    }
   }
 
   selectedStory?: Story;

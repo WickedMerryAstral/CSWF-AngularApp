@@ -1,5 +1,11 @@
 <mat-toolbar color="primary">
-  <button mat-button routerLink="users/login">Log in</button>
-  <button mat-button routerLink="users/register">Register</button>
+  <mat-label>{{message}}</mat-label>
+  <div *ngIf="loggedIn">
+    <button mat-button (click)="logOut()">Log out</button>
+  </div>
+  <div *ngIf="!loggedIn">
+    <button mat-button routerLink="users/login">Log in</button>
+    <button mat-button routerLink="users/register">Register</button>
+  </div>
   <button mat-button routerLink="stories">Stories</button>
 </mat-toolbar>

@@ -39,6 +39,7 @@ export class CreatestoryComponent implements OnInit {
   ngOnInit(): void {
     this.webtoken.getUser()
       .subscribe(result => this.user = result);
+    console.log(this.user);
   }
 
   onSubmit(): void {

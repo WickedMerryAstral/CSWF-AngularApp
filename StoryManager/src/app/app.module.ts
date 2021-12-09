@@ -33,7 +33,6 @@ import { CreatestoryComponent } from './createstory/createstory.component';
 import { LocationsComponent } from './locations/locations.component';
 import { LocationdetailsComponent } from './locationdetails/locationdetails.component';
 import { CreatelocationComponent } from './createlocation/createlocation.component';
-import { DebugComponent } from './debug/debug.component'
 import { WebtokenService } from './webtoken.service';
 import { EventsComponent } from './events/events.component';
 import { EventdetailsComponent } from './eventdetails/eventdetails.component';
@@ -43,6 +42,7 @@ import { ImagesComponent } from './images/images.component';
 import { CreateeventComponent } from './createevent/createevent.component';
 import { HomeComponent } from './home/home.component';
 import { CreatecharacterComponent } from './createcharacter/createcharacter.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,6 @@ import { CreatecharacterComponent } from './createcharacter/createcharacter.comp
     LocationsComponent,
     LocationdetailsComponent,
     CreatelocationComponent,
-    DebugComponent,
     EventsComponent,
     EventdetailsComponent,
     CharactersComponent,
@@ -91,7 +90,8 @@ import { CreatecharacterComponent } from './createcharacter/createcharacter.comp
     MatGridListModule,
   ],
   providers: [
-    WebtokenService
+    WebtokenService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

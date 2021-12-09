@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '../../model/location'
 import { LocationService } from '../location.service';
+import { WebtokenService } from '../webtoken.service';
 
 @Component({
   selector: 'app-locations',
@@ -16,7 +17,8 @@ export class LocationsComponent implements OnInit {
   constructor
     (private locationService: LocationService,
     private activeRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private webtoken: WebtokenService) { }
 
   ngOnInit(): void {
     this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
@@ -25,6 +27,9 @@ export class LocationsComponent implements OnInit {
         this.locations = result
         this.setCharacterPreview();
       });
+
+    console.log(this.webtoken.getUser());
+    console.log(this.webtoken.getJwtToken());
   }
 
   addLocation(): void {

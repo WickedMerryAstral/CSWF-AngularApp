@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,6 +11,8 @@ import { EventService } from '../event.service';
   styleUrls: ['./eventdetails.component.css']
 })
 export class EventdetailsComponent implements OnInit {
+
+  pipe = new DatePipe('en-US');
 
   event: Event;
   storyID: String;
@@ -45,7 +48,14 @@ export class EventdetailsComponent implements OnInit {
     this.eventID = this.activeRoute.snapshot.paramMap.get('eventID');
 
     this.eventService.getEvent(this.eventID)
-      .subscribe(result => this.event = result);
+      .subscribe(result => {
+        this.event = result
+
+        const temp = this.event.date;
+        const displayDate = this.pipe.transform(temp, 'yyyy-MM-dd');
+
+        this.eventForm.patchValue({ date: displayDate });
+      });
     // Get specific locations, do the same for events, etc.
   }
 
