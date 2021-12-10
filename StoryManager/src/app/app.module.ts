@@ -13,7 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridList, MatGridListModule } from '@angular/material/grid-list'
+import { MatCardImage, MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -31,8 +33,16 @@ import { CreatestoryComponent } from './createstory/createstory.component';
 import { LocationsComponent } from './locations/locations.component';
 import { LocationdetailsComponent } from './locationdetails/locationdetails.component';
 import { CreatelocationComponent } from './createlocation/createlocation.component';
-import { DebugComponent } from './debug/debug.component'
 import { WebtokenService } from './webtoken.service';
+import { EventsComponent } from './events/events.component';
+import { EventdetailsComponent } from './eventdetails/eventdetails.component';
+import { CharactersComponent } from './characters/characters.component';
+import { CharacterdetailsComponent } from './characterdetails/characterdetails.component';
+import { ImagesComponent } from './images/images.component';
+import { CreateeventComponent } from './createevent/createevent.component';
+import { HomeComponent } from './home/home.component';
+import { CreatecharacterComponent } from './createcharacter/createcharacter.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -48,7 +58,14 @@ import { WebtokenService } from './webtoken.service';
     LocationsComponent,
     LocationdetailsComponent,
     CreatelocationComponent,
-    DebugComponent
+    EventsComponent,
+    EventdetailsComponent,
+    CharactersComponent,
+    CharacterdetailsComponent,
+    ImagesComponent,
+    CreateeventComponent,
+    HomeComponent,
+    CreatecharacterComponent
   ],
   imports: [
     HttpClientModule,
@@ -63,15 +80,18 @@ import { WebtokenService } from './webtoken.service';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
+    MatTabsModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule,
     NoopAnimationsModule,
-    RouterModule
+    RouterModule,
+    MatGridListModule,
   ],
   providers: [
-    WebtokenService
+    WebtokenService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

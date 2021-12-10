@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '../../model/location';
+import { Story } from '../../model/story';
 import { LocationService } from '../location.service';
 import { WebtokenService } from '../webtoken.service';
 
@@ -43,14 +44,16 @@ export class CreatelocationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.storyID = this.activeRoute.snapshot.paramMap.get('id');
+    this.storyID = this.activeRoute.snapshot.paramMap.get('storyID');
   }
 
   onSubmit(): void {
-    this.location = this.locationForm.value;
-    this.locationService.postLocation(this.location, this.storyID)
-      .subscribe(result => {
-        this.router.navigate(['stories']);
-      });
+    if (this.locationForm.valid) {
+      this.location = this.locationForm.value;
+      this.locationService.postLocation(this.location, this.storyID)
+        .subscribe(result => {
+          this.router.navigate(['stories/' + this.storyID]);
+        });
+    }
   }
 }

@@ -1,19 +1,41 @@
-<div>
+<div class="container">
   <mat-card>
     <mat-card-title>{{story.title}}</mat-card-title>
-    <form>
-      <div class="form-group">
-        <label for="title" name="title">Title:</label>
-        <input name="title" id="title" [(ngModel)]="story.title" placeholder="title" />
-      </div>
+    <mat-card-content>
+      <form [formGroup]="storyForm">
+        <div>
+          <label>Title</label>
+          <input type="text" class="form-control" [(ngModel)]="story.title" formControlName="title" placeholder="title" required>
+        </div>
+        <div>
+          <label>Description</label>
+          <input type="text" class="form-control" [(ngModel)]="story.description" formControlName="description" placeholder="description" required>
+        </div>
+        <div *ngIf="title?.invalid && title?.touched" class="alert alert-danger">
 
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <input name="description" id="description" [(ngModel)]="story.description" placeholder="description" />
-      </div>
-    </form>
-    <button mat-button (click)="updateStory()">Save</button>
-    <button mat-button color="warn" (click)="removeStory()">Delete Story</button>
+          <div *ngIf="title?.errors?.['required']">
+            Title is required.
+          </div>
+        </div>
+        <div *ngIf="description?.invalid && description?.touched" class="alert alert-danger">
+
+          <div *ngIf="description?.errors?.['required']">
+            Description is required.
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="updateStory()">Save</button>
+      <button mat-button color="warn" (click)="removeStory()">Delete</button>
+    </mat-card-actions>
   </mat-card>
-  <app-locations></app-locations>
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Locations">
+      <app-locations></app-locations>
+    </mat-tab>
+    <mat-tab label="Events">
+      <app-events></app-events>
+    </mat-tab>
+  </mat-tab-group>
 </div>

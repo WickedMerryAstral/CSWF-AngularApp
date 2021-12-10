@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>New Event</h1>
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Title</label>
+      <input type="text" class="form-control" formControlName="title" required>
+    </div>
+    <div>
+      <label>Description</label>
+      <input type="text" class="form-control" formControlName="description" required>
+    </div>
+    <div>
+      <label>Date</label>
+      <input type="date" class="form-control" formControlName="date" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <div *ngIf="title?.invalid && title?.touched" class="alert alert-danger">
+
+    <div *ngIf="title?.errors?.['required']">
+      Title is required.
+    </div>
+  </div>
+  <div *ngIf="description?.invalid && description?.touched" class="alert alert-danger">
+
+    <div *ngIf="description?.errors?.['required']">
+      Description is required.
+    </div>
+  </div>
+
+  <div *ngIf="date?.invalid && date?.touched" class="alert alert-danger">
+
+    <div *ngIf="date?.errors?.['required']">
+      Date is required.
+    </div>
+  </div>
+</div>

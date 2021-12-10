@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Story } from '../../model/story';
+import { User } from '../../model/user';
 import { StoryService } from '../story.service';
 import { WebtokenService } from '../webtoken.service';
 
@@ -12,19 +13,34 @@ import { WebtokenService } from '../webtoken.service';
 export class StoriesComponent implements OnInit {
 
   stories: Story[];
-  userID: String;
+  user: User;
+  gridColumns: Number;
 
   constructor(private storyService: StoryService,
     private router: Router,
     private webToken: WebtokenService) { }
 
   ngOnInit(): void {
-    this.webToken.getUser()
-      .subscribe(result => {
-        this.userID = result._id;
-      });
-    this.storyService.getStoriesByUser(this.userID)
-      .subscribe(result => this.stories = result);
+
+    if (!this.webToken.hasUser()) {
+      this.router.navigate(['/users/login']);
+    } else {
+      // Default grid column set.
+      this.gridColumns = 3;
+
+      this.webToken.getUser()
+        .subscribe(user => {
+          this.user = user;
+
+          this.storyService.getStoriesByUser(this.user._id)
+            .subscribe((result) => {
+              this.stories = result;
+              this.stories.forEach(story => {
+                story.img = '/assets/placeholder.png';
+              });
+            });
+        });
+    }
   }
 
   selectedStory?: Story;

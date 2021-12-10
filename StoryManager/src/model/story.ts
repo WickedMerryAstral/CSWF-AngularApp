@@ -9,4 +9,5 @@ export class Story {
   description: String;
   events: Event[];
   locations: Location[];
+  img: String;
 }

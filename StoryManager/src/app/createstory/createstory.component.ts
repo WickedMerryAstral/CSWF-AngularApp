@@ -37,20 +37,26 @@ export class CreatestoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.webtoken.getUser()
-      .subscribe(result => this.user = result);
+
   }
 
   onSubmit(): void {
-    this.story = this.storyForm.value;
-    this.story.author = this.user;
-    this.storyService.postStory(this.story)
-      .subscribe(result => {
-        console.log(result);
-        this.router.navigate(['stories']);
-      },
-        err => {
-          console.log(err);
-      });
+
+    if (this.storyForm.valid) {
+      this.webtoken.getUser()
+        .subscribe((result) => {
+          this.user = result;
+
+          this.story = this.storyForm.value;
+          this.story.author = this.user;
+          this.storyService.postStory(this.story)
+            .subscribe(result => {
+              this.router.navigate(['stories']);
+            },
+              err => {
+                console.log(err);
+              });
+        });
+    }
   }
 }

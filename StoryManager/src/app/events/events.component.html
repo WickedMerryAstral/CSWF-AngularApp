@@ -1,0 +1,18 @@
+<h2>Events</h2>
+<div class="container">
+  <button mat-button color="primary" (click)="addEvent()">New Event</button>
+</div>
+
+<mat-grid-list cols="3" rows="3" *ngFor="let event of events">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle><b>{{event.date}}</b></mat-card-subtitle>
+      <mat-card-subtitle><b>{{event.characterPreview}}</b></mat-card-subtitle>
+      <mat-card-title>{{event.title}}</mat-card-title>
+      <mat-card-subtitle>{{event.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button (click)="onSelect(event)">View {{event.title}}</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-grid-list>

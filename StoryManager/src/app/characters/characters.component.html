@@ -1,0 +1,17 @@
+<h2>Characters</h2>
+<div class="container">
+  <button mat-button color="primary" (click)="addCharacter()">New Character</button>
+</div>
+<mat-grid-list cols="3" rows="3" *ngFor="let character of characters">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle>{{character.pronouns}}</mat-card-subtitle>
+      <mat-card-title><b>{{character.name}}</b></mat-card-title>
+      <mat-card-subtitle>{{character.description}}</mat-card-subtitle>
+      <mat-card-subtitle>{{character.birthdate}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button (click)="onSelect(character)">View {{character.name}}</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-grid-list>

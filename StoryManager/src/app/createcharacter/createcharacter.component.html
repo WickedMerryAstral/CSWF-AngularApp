@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>New Character</h1>
+  <form [formGroup]="characterForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Name</label>
+      <input type="text" class="form-control" formControlName="name" required>
+    </div>
+
+    <label for="pronouns" name="pronouns">Pronouns:</label>
+    <br />
+    <select formControlName="pronouns">
+      <option *ngFor="let pronouns of PRONOUNS" [ngValue]="pronouns" required>
+        {{ pronouns.name }}
+      </option>
+    </select>
+
+    <div>
+      <label>Description</label>
+      <input type="text" class="form-control" formControlName="description" required>
+    </div>
+
+    <div>
+      <label>Birthdate</label>
+      <input type="date" class="form-control" formControlName="birthdate" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <div *ngIf="name?.invalid && name?.touched" class="alert alert-danger">
+
+    <div *ngIf="name?.errors?.['required']">
+      Name is required.
+    </div>
+  </div>
+
+  <div *ngIf="pronouns?.invalid && pronouns?.touched" class="alert alert-danger">
+
+    <div *ngIf="pronouns?.errors?.['required']">
+      Pronouns are required.
+    </div>
+  </div>
+
+  <div *ngIf="birthdate?.invalid && birthdate?.touched" class="alert alert-danger">
+
+    <div *ngIf="birthdate?.errors?.['required']">
+      Birthdate is required.
+    </div>
+  </div>
+</div>

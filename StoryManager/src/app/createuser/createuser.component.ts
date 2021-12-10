@@ -45,16 +45,18 @@ export class CreateuserComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.user = this.userForm.value;
+    if (this.userForm.valid) {
+      this.user = this.userForm.value;
 
-    // New Users get the User role by default.
-    this.user.role = ROLES.USER;
+      // New Users get the User role by default.
+      this.user.role = ROLES.USER;
 
-    this.userService.register(this.user)
-      .subscribe(result => {
-        // Setting user upon registering
-        this.webtoken.setUser(this.user);
-        this.router.navigate(['users/login']);
-      });
+      this.userService.register(this.user)
+        .subscribe(result => {
+          // Setting user upon registering
+          this.webtoken.setUser(this.user);
+          this.router.navigate(['users/login']);
+        });
+    }
   }
 }
