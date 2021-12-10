@@ -9,7 +9,8 @@ import { User } from '../model/user';
 })
 export class WebtokenService {
 
-  constructor(private cookie: CookieService, private router: Router) { }
+  constructor(private cookie: CookieService,
+    private router: Router) { }
 
   jwtToken: String;
   user: User;
@@ -30,14 +31,13 @@ export class WebtokenService {
 
   setUser(user: User) {
     this.user = user;
-    console.log(user);
     this.cookie.set('currentuser', JSON.stringify(user));
     this.router.navigate(['stories']);
   }
 
-  hasUser(): Boolean {
+  hasUser(): Observable<Boolean> {
     const result = this.cookie.check('currentuser')
-    return result;
+    return of(result);
   }
 
   clearUser() {

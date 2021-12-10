@@ -25,11 +25,15 @@ export class NavigationComponent implements OnInit {
         this.user = result;
       })
 
-    if (this.webtoken.hasUser) {
-      this.loggedIn = true;
-      this.message = "Welcome, " + this.user.username; + "!";
-      this.message = this.message.replace(/['"]+/g, '');
-    };
+    // Subscribing to the webtoken active account boolean.
+    this.webtoken.hasUser()
+      .subscribe((result) => {
+        if (result) {
+          this.loggedIn = true;
+          this.message = "Welcome, " + this.user.username; + "!";
+          this.message = this.message.replace(/['"]+/g, '');
+        }
+      });
   }
 
   logOut(): void {
