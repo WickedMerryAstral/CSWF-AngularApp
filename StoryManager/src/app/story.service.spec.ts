@@ -1,10 +1,10 @@
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { async, getTestBed, inject, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs';
 import { Story } from '../model/story';
 import { User } from '../model/user';
-
 import { StoryService } from './story.service';
 import { UserService } from './user.service';
 
@@ -15,6 +15,7 @@ describe('StoryService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule ],
       providers: [HttpClient, HttpHandler, HttpClientTestingModule]
     });
     injector = getTestBed();
