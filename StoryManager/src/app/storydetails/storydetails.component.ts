@@ -34,8 +34,8 @@ export class StorydetailsComponent implements OnInit {
     private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.story = new Story();
     this.id = this.activeRoute.snapshot.paramMap.get('storyID');
-
     this.storyService.getStoryByID(this.id)
       .subscribe(result => {
         this.story = result;

@@ -9,39 +9,42 @@ import { User } from '../model/user';
 })
 export class WebtokenService {
 
-  constructor(private cookie: CookieService,
-    private router: Router) { }
+  constructor(private router: Router) { }
 
   jwtToken: String;
   user: User;
 
   getJwtToken() {
-    return this.cookie.get('jwt');
+    return localStorage.getItem('jwt');
   }
 
   getUser(): Observable<User> {
-    const temp = JSON.parse(this.cookie.get('currentuser'));
+    const temp = JSON.parse(localStorage.getItem('currentuser'))
     return of(temp);
   }
 
   setJwtToken(jwtToken: String) {
     var temp = jwtToken.substring(1, (jwtToken.length - 1));
-    this.cookie.set('jwt', temp);
+    localStorage.setItem('jwt', temp);
   }
 
   setUser(user: User) {
     this.user = user;
-    this.cookie.set('currentuser', JSON.stringify(user));
+    localStorage.setItem('currentuser', JSON.stringify(user));
     this.router.navigate(['stories']);
   }
 
   hasUser(): Observable<Boolean> {
-    const result = this.cookie.check('currentuser')
-    return of(result);
+    const result = localStorage.getItem('currentuser');
+    if (result !== null) {
+      return of(true);
+    }
+    return of(false);
   }
 
   clearUser() {
-    this.cookie.deleteAll();
+    localStorage.removeItem('currentuser');
+    localStorage.removeItem('jwt');
     this.router.navigate(['users/login']);
   }
 }
