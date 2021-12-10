@@ -1,1 +1,1 @@
-export const ConnectionString = "http://localhost:5000";
+export const ConnectionString = "https://cswf-nodeserver.herokuapp.com/";
